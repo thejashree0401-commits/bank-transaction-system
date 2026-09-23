@@ -1,0 +1,126 @@
+import java.util.Scanner;
+
+public class Account {
+
+    int accountNumber;
+    double balance;
+
+    // Constructor
+    Account(int accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    // Deposit
+    void deposit(double amount) {
+
+        if (amount > 0) {
+            balance = balance + amount;
+
+            System.out.println("\nDeposit Successful!");
+            System.out.println("Deposited Amount : Rs." + amount);
+            System.out.println("Current Balance  : Rs." + balance);
+        } 
+        else {
+            System.out.println("\nInvalid Deposit Amount!");
+        }
+    }
+
+    // Withdraw
+    void withdraw(double amount) {
+
+        if (amount <= 0) {
+            System.out.println("\nInvalid Withdrawal Amount!");
+        }
+        else if (amount > balance) {
+            System.out.println("\nInsufficient Balance!");
+            System.out.println("Available Balance : Rs." + balance);
+        }
+        else {
+            balance = balance - amount;
+
+            System.out.println("\nWithdrawal Successful!");
+            System.out.println("Withdrawn Amount : Rs." + amount);
+            System.out.println("Current Balance  : Rs." + balance);
+        }
+    }
+
+    // Display account details
+    void displayAccount() {
+
+        System.out.println("\n========== ACCOUNT DETAILS ==========");
+        System.out.println("Account Number : " + accountNumber);
+        System.out.println("Balance        : Rs." + balance);
+        System.out.println("=====================================");
+    }
+
+    // Main method
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("======================================");
+        System.out.println("       BANK TRANSACTION SYSTEM");
+        System.out.println("       ACCOUNT & TRANSACTION");
+        System.out.println("======================================");
+
+        // Get information from user
+        System.out.print("\nEnter Account Number: ");
+        int accountNumber = sc.nextInt();
+
+        System.out.print("Enter Initial Balance: ");
+        double balance = sc.nextDouble();
+
+        Account account = new Account(accountNumber, balance);
+
+        int choice;
+
+        do {
+
+            System.out.println("\n------------- MENU -------------");
+            System.out.println("1. Display Account");
+            System.out.println("2. Deposit Money");
+            System.out.println("3. Withdraw Money");
+            System.out.println("4. Exit");
+            System.out.println("--------------------------------");
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            if (choice == 1) {
+
+                account.displayAccount();
+
+            }
+            else if (choice == 2) {
+
+                System.out.print("Enter Deposit Amount: ");
+                double amount = sc.nextDouble();
+
+                account.deposit(amount);
+
+            }
+            else if (choice == 3) {
+
+                System.out.print("Enter Withdrawal Amount: ");
+                double amount = sc.nextDouble();
+
+                account.withdraw(amount);
+
+            }
+            else if (choice == 4) {
+
+                System.out.println("\nThank you for using Bank Transaction System!");
+
+            }
+            else {
+
+                System.out.println("\nInvalid Choice!");
+
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
