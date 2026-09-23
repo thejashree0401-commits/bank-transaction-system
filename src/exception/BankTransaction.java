@@ -35,7 +35,7 @@ public class BankTransaction {
     }
 }
 
-So your teammate's main() can simply create the object and call:
+
 
 BankTransaction account = new BankTransaction(balance);
 
