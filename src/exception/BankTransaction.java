@@ -1,7 +1,5 @@
 package exception;
 
-import java.util.Scanner;
-
 public class BankTransaction {
 
     private double balance;
@@ -32,34 +30,21 @@ public class BankTransaction {
         System.out.println("Remaining balance: ₹" + balance);
     }
 
-    public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("=================================");
-        System.out.println("     BANK TRANSACTION SYSTEM");
-        System.out.println("=================================");
-
-        System.out.print("Enter account balance: ₹");
-        double balance = scanner.nextDouble();
-
-        BankTransaction account = new BankTransaction(balance);
-
-        System.out.print("Enter withdrawal amount: ₹");
-        double amount = scanner.nextDouble();
-
-        try {
-            account.withdraw(amount);
-        }
-        catch (InvalidAmountException e) {
-            System.out.println("Transaction Failed!");
-            System.out.println("Error: " + e.getMessage());
-        }
-        catch (InsufficientBalanceException e) {
-            System.out.println("Transaction Failed!");
-            System.out.println("Error: " + e.getMessage());
-        }
-
-        scanner.close();
+    public double getBalance() {
+        return balance;
     }
+}
+
+So your teammate's main() can simply create the object and call:
+
+BankTransaction account = new BankTransaction(balance);
+
+try {
+    account.withdraw(amount);
+}
+catch (InvalidAmountException e) {
+    System.out.println(e.getMessage());
+}
+catch (InsufficientBalanceException e) {
+    System.out.println(e.getMessage());
 }
